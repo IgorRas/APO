@@ -10,8 +10,12 @@ number = 0
 def copy_image(filename):
     global number
     name = os.path.basename(filename)[:-4]
-    shutil.copy(filename, f'copied/{name + str(number)}.png')
+    new_filename = f'copied/{name + str(number)}.png'
+    shutil.copy(filename, new_filename)
+    make_win1(new_filename)
+    os.remove(new_filename)
     number += 1
+    return new_filename
 
 
 def save_image(filename):
