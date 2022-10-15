@@ -49,7 +49,7 @@ def hist_color1(source):  # openCV
 
 def hist_color(source):  # openCV
     img = Image.open(source)
-    fig = plt.figure(figsize=(10, 7))
+    fig = plt.figure(figsize=(10, 10))
     rows = 4
     columns = 1
 
