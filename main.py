@@ -31,7 +31,10 @@ def make_win1(filename):
     im.thumbnail(size=(900, 900))
     im.save(filename, format="PNG")
     layout = [[sg.Image(filename)]]
-    return sg.Window(filename, layout, location=(800, 600), resizable=True, finalize=True)
+    right_click_menu = ['Unused', ['Refresh']]
+    return sg.Window(filename, layout, location=(800, 600),
+                     resizable=True, finalize=True,
+                     right_click_menu=right_click_menu)
 
 
 def test_menus():
@@ -75,7 +78,7 @@ def test_menus():
         # ------ Process menu choices ------ #
         if event == 'Open':
             filename = sg.popup_get_file('file to open', no_window=True)
-            make_win1(filename)
+            new_window = make_win1(filename)
             print(filename)
         elif event == 'Save':
             save_image(filename)
@@ -85,6 +88,8 @@ def test_menus():
             basichistogram.hist_mono(filename)
         elif event == 'Color':
             basichistogram.hist_color(filename)
+        elif event == 'refresh':
+            new_window.refresh()
 
     window.close()
 
