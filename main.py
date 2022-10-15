@@ -3,6 +3,8 @@ import PySimpleGUI as sg
 from PIL import Image
 import shutil
 import os
+import cv2
+import matplotlib.pyplot as plt
 
 number = 0
 
@@ -30,11 +32,20 @@ def make_win1(filename):
     im = Image.open(filename)
     im.thumbnail(size=(900, 900))
     im.save(filename, format="PNG")
-    layout = [[sg.Image(filename)]]
+    column = [[sg.Image(filename, size=(500, 500))]]
+    layout = [[sg.Column(column, scrollable=True, size=(500, 500))]]
     right_click_menu = ['Unused', ['Refresh']]
     return sg.Window(filename, layout, location=(800, 600),
                      resizable=True, finalize=True,
                      right_click_menu=right_click_menu)
+
+
+def make_win2(filename):
+    fig = plt.figure(figsize=(8, 8))
+    img = cv2.imread(filename)
+    fig.add_subplot(1, 1, 1)
+    plt.imshow(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
+    plt.show()
 
 
 def test_menus():
@@ -79,6 +90,7 @@ def test_menus():
         if event == 'Open':
             filename = sg.popup_get_file('file to open', no_window=True)
             new_window = make_win1(filename)
+            # make_win2(filename)
             print(filename)
         elif event == 'Save':
             save_image(filename)
@@ -90,7 +102,6 @@ def test_menus():
             basichistogram.hist_color(filename)
         elif event == 'refresh':
             new_window.refresh()
-
     window.close()
 
 
