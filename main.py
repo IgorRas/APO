@@ -14,8 +14,7 @@ def copy_image(filename):
     name = os.path.basename(filename)[:-4]
     new_filename = f'copied/{name + str(number)}.png'
     shutil.copy(filename, new_filename)
-    make_win1(new_filename)
-    os.remove(new_filename)
+    make_win1(new_filename,  1)
     number += 1
     return new_filename
 
@@ -28,24 +27,17 @@ def save_image(filename):
     print('Saved')
 
 
-def make_win1(filename):
+def make_win1(filename, scale):
     im = Image.open(filename)
-    im.thumbnail(size=(900, 900))
-    im.save(filename, format="PNG")
-    column = [[sg.Image(filename, size=(500, 500))]]
-    layout = [[sg.Column(column, scrollable=True, size=(500, 500))]]
-    right_click_menu = ['Unused', ['Refresh']]
-    return sg.Window(filename, layout, location=(800, 600),
-                     resizable=True, finalize=True,
-                     right_click_menu=right_click_menu)
-
-
-def make_win2(filename):
-    fig = plt.figure(figsize=(8, 8))
-    img = cv2.imread(filename)
-    fig.add_subplot(1, 1, 1)
-    plt.imshow(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
-    plt.show()
+    width, height = im.size
+    new_im = im.copy()
+    new_im_resized = new_im.resize((int(width*scale), int(height*scale)))
+    name = os.path.basename(filename)[:-4]
+    new_im_resized.save(f'copied/{name}.png', format='PNG')
+    column = [[sg.Image(f'copied/{name}.png')]]
+    layout = [[sg.Column(column, scrollable=True, size=(800, 800))]]
+    return sg.Window(filename, layout,
+                     resizable=True, finalize=True)
 
 
 def test_menus():
@@ -65,9 +57,9 @@ def test_menus():
                 ['&Lab7', []],
                 ['&Lab8', []], ]
 
-    right_click_menu = ['Unused', []]
+    right_click_menu = ['', ['Zoom', ['10%', '20%', '25%', '50%', '100%', '150%', '200%']]]
 
-    # ------ GUI Defintion ------ #
+    # ------ GUI Definition ------ #
     layout = [
         [sg.Menu(menu_def, tearoff=False, pad=(200, 1))],
         [sg.Output(expand_x=True, expand_y=True, size=(60, 5))]
@@ -84,13 +76,13 @@ def test_menus():
     while True:
         event, values = window.read()
         if event in (sg.WIN_CLOSED, 'Exit'):
+            shutil.rmtree('copied')
             break
         print(event, values)
         # ------ Process menu choices ------ #
         if event == 'Open':
             filename = sg.popup_get_file('file to open', no_window=True)
-            new_window = make_win1(filename)
-            # make_win2(filename)
+            new_window = make_win1(filename, 1)
             print(filename)
         elif event == 'Save':
             save_image(filename)
@@ -100,10 +92,22 @@ def test_menus():
             basichistogram.hist_mono(filename)
         elif event == 'Color':
             basichistogram.hist_color(filename)
-        elif event == 'refresh':
-            new_window.refresh()
+        elif event == '10%':
+            new_window = make_win1(filename, 0.10)
+        elif event == '20%':
+            new_window = make_win1(filename, 0.20)
+        elif event == '25%':
+            new_window = make_win1(filename, 0.25)
+        elif event == '50%':
+            new_window = make_win1(filename, 0.50)
+        elif event == '150%':
+            new_window = make_win1(filename, 1.50)
+        elif event == '200%':
+            new_window = make_win1(filename, 2.00)
+
     window.close()
 
 
 if __name__ == '__main__':
+    os.mkdir('copied')
     test_menus()
