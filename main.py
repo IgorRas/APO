@@ -5,7 +5,7 @@ import shutil
 import os
 import cv2
 import matplotlib.pyplot as plt
-
+from lab2 import hisogramop
 number = 0
 
 
@@ -49,7 +49,7 @@ def test_menus():
     # ------ Menu Definition ------ #
     menu_def = [['&File', ['&Open', 'Save', 'Duplicate']],
                 ['&Lab1', ['&Histogram', ['&Monochromatic', '&Color']], ],
-                ['&Lab2', []],
+                ['&Lab2', ['Test']],
                 ['&Lab3', []],
                 ['&Lab4', []],
                 ['&Lab5', []],
@@ -104,6 +104,8 @@ def test_menus():
             new_window = make_win1(filename, 1.50)
         elif event == '200%':
             new_window = make_win1(filename, 2.00)
+        elif event == 'Test':
+            hisogramop.roz_hist(filename)
 
     window.close()
 
