@@ -77,6 +77,22 @@ def equalize(source):
     img_arr = cdf_normalized[temp_img]
     img_arr = np.reshape(img_arr, img.shape)
     img_fin = Image.fromarray(img_arr)
-    print(img_arr)
     img_fin.show()
-    # print(img2)
+
+
+def nonlinear(source, gamma):
+    img = cv2.imread(source, 0)
+    hist, bins = np.histogram(img.flatten(), 256, [0, 256])
+    cdf = np.cumsum(hist)**(1/gamma)
+    nj = (cdf - cdf.min()) * 255
+    N = cdf.max() - cdf.min()
+    cdf_normalized = nj / N
+    cdf_normalized = cdf_normalized.astype('uint8')
+    plt.plot(cdf_normalized)
+    plt.show()
+
+    temp_img = img.flatten()
+    img_arr = cdf_normalized[temp_img]
+    img_arr = np.reshape(img_arr, img.shape)
+    img_fin = Image.fromarray(img_arr)
+    img_fin.show()

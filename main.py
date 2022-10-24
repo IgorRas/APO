@@ -121,6 +121,15 @@ def test_menus():
             hisogramop.equalize_cv(filename)
         elif event == 'equalize':
             hisogramop.equalize(filename)
+        elif event == 'Nonlinear':
+            layout = [
+                [sg.Text('Gamma:'), sg.InputText()],
+                [sg.Submit()]
+            ]
+            n_window = sg.Window('Podaj dane', layout)
+            event, values = n_window.read()
+            n_window.close()
+            hisogramop.nonlinear(filename, float(values[0]))
 
     window.close()
 
