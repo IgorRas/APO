@@ -113,7 +113,10 @@ def test_menus():
             n_window = sg.Window('Podaj dane', layout)
             event, values = n_window.read()
             n_window.close()
-            hisogramop.roz_hist(filename, int(values[0]), int(values[1]))
+            if int(values[0]) == 0 and int(values[1]) == 255:
+                hisogramop.roz_hist_max(filename)
+            else:
+                hisogramop.roz_hist(filename, int(values[0]), int(values[1]))
         elif event == 'Nonlinear':
             new_window = make_win1(filename, 1)
 
