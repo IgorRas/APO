@@ -49,7 +49,7 @@ def test_menus():
     # ------ Menu Definition ------ #
     menu_def = [['&File', ['&Open', 'Save', 'Duplicate']],
                 ['&Lab1', ['&Histogram', ['&Monochromatic', '&Color']], ],
-                ['&Lab2', ['Stretch histogram', ['Linear', 'Nonlinear']]],
+                ['&Lab2', ['Stretch histogram', ['Linear', 'Nonlinear'], 'equalize_cv', 'equalize']],
                 ['&Lab3', []],
                 ['&Lab4', []],
                 ['&Lab5', []],
@@ -117,8 +117,10 @@ def test_menus():
                 hisogramop.roz_hist_max(filename)
             else:
                 hisogramop.roz_hist(filename, int(values[0]), int(values[1]))
-        elif event == 'Nonlinear':
-            new_window = make_win1(filename, 1)
+        elif event == 'equalize_cv':
+            hisogramop.equalize_cv(filename)
+        elif event == 'equalize':
+            hisogramop.equalize(filename)
 
     window.close()
 

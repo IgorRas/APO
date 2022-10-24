@@ -55,3 +55,28 @@ def roz_hist(source, a, b):
     im.show()
     plt.hist(after_img_ar.ravel(), 256, [0, 256])
     plt.show()
+
+
+def equalize_cv(source):
+    img = cv2.imread(source, 0)
+    equ = cv2.equalizeHist(img)
+    res = np.hstack((img, equ))  # stacking images side-by-side
+    cv2.imwrite('copied/res.png', res)
+
+
+def equalize(source):
+    img = cv2.imread(source, 0)
+    hist, bins = np.histogram(img.flatten(), 256, [0, 256])
+    cdf = np.cumsum(hist)
+    nj = (cdf - cdf.min()) * 255
+    N = cdf.max() - cdf.min()
+    cdf_normalized = nj / N
+    cdf_normalized = cdf_normalized.astype('uint8')
+
+    temp_img = img.flatten()
+    img_arr = cdf_normalized[temp_img]
+    img_arr = np.reshape(img_arr, img.shape)
+    img_fin = Image.fromarray(img_arr)
+    print(img_arr)
+    img_fin.show()
+    # print(img2)
