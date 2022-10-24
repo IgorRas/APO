@@ -35,7 +35,7 @@ def make_win1(filename, scale):
     name = os.path.basename(filename)[:-4]
     new_im_resized.save(f'copied/{name}.png', format='PNG')
     column = [[sg.Image(f'copied/{name}.png')]]
-    layout = [[sg.Column(column, scrollable=True, size=(800, 800))]]
+    layout = [[sg.Column(column, scrollable=True, size_subsample_width=1, size_subsample_height=1)]]
     return sg.Window(filename, layout,
                      resizable=True, finalize=True)
 
