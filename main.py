@@ -49,7 +49,7 @@ def test_menus():
     # ------ Menu Definition ------ #
     menu_def = [['&File', ['&Open', 'Save', 'Duplicate']],
                 ['&Lab1', ['&Histogram', ['&Monochromatic', '&Color']], ],
-                ['&Lab2', ['Test']],
+                ['&Lab2', ['Liniowe']],
                 ['&Lab3', []],
                 ['&Lab4', []],
                 ['&Lab5', []],
@@ -104,8 +104,16 @@ def test_menus():
             new_window = make_win1(filename, 1.50)
         elif event == '200%':
             new_window = make_win1(filename, 2.00)
-        elif event == 'Test':
-            hisogramop.roz_hist(filename)
+        elif event == 'Liniowe':
+            layout = [
+                [sg.Text('Min:'), sg.InputText()],
+                [sg.Text('Max:'), sg.InputText()],
+                [sg.Submit()]
+            ]
+            window = sg.Window('Podaj dane', layout)
+            event, values = window.read()
+            window.close()
+            hisogramop.roz_hist(filename, int(values[0]), int(values[1]))
 
     window.close()
 
