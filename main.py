@@ -1,11 +1,13 @@
 from lab1 import basichistogram
+from lab2 import hisogramop
+from lab2 import pointop
 import PySimpleGUI as sg
 from PIL import Image
 import shutil
 import os
 import cv2
 import matplotlib.pyplot as plt
-from lab2 import hisogramop
+
 number = 0
 
 
@@ -49,7 +51,7 @@ def test_menus():
     # ------ Menu Definition ------ #
     menu_def = [['&File', ['&Open', 'Save', 'Duplicate']],
                 ['&Lab1', ['&Histogram', ['&Monochromatic', '&Color']], ],
-                ['&Lab2', ['Stretch histogram', ['Linear', 'Nonlinear'], 'equalize_cv', 'equalize']],
+                ['&Lab2', ['Stretch histogram', ['Linear', 'Nonlinear'], 'equalize_cv', 'Equalize', 'Negative', 'Thresholding 1 param', 'Thresholding 2 params']],
                 ['&Lab3', []],
                 ['&Lab4', []],
                 ['&Lab5', []],
@@ -119,7 +121,7 @@ def test_menus():
                 hisogramop.roz_hist(filename, int(values[0]), int(values[1]))
         elif event == 'equalize_cv':
             hisogramop.equalize_cv(filename)
-        elif event == 'equalize':
+        elif event == 'Equalize':
             hisogramop.equalize(filename)
         elif event == 'Nonlinear':
             layout = [
@@ -130,6 +132,47 @@ def test_menus():
             event, values = n_window.read()
             n_window.close()
             hisogramop.nonlinear(filename, float(values[0]))
+        elif event == 'Negative':
+            pointop.neg(filename)
+        elif event == 'Thresholding 2 params':
+            slider_min = sg.Slider(range=(0, 255), default_value=1, orientation='horizontal', pad=10)
+
+            slider_max = sg.Slider(range=(0, 255), default_value=255, orientation='horizontal', pad=10)
+            layout = [
+                [sg.Text('Próg min:'), sg.InputText(size=(4, 10)), slider_min],
+                [sg.Text('Próg max:'), sg.InputText(size=(4, 10)), slider_max],
+                [],
+                [sg.Radio('Binarne', 'Radio1', default=True), sg.Radio('Bez zamiany liczby poziomów szarości', 'Radio1')],
+                [sg.Submit()]
+            ]
+            n_window = sg.Window('Podaj dane', layout)
+            event, values = n_window.read()
+            n_window.close()
+            if values[0]:
+                min_value = int(values[0])
+                max_value = int(values[2])
+            else:
+                min_value = int(values[1])
+                max_value = int(values[3])
+            is_bin = values[4]
+            pointop.prog2(filename, min_value, max_value, is_bin)
+        elif event == 'Thresholding 1 param':
+            slider= sg.Slider(range=(0, 255), default_value=1, orientation='horizontal', pad=10)
+            layout = [
+                [sg.Text('Próg:'), sg.InputText(size=(4, 10)), slider],
+                [],
+                [sg.Radio('Binarne', 'Radio1', default=True), sg.Radio('Bez zamiany liczby poziomów szarości', 'Radio1')],
+                [sg.Submit()]
+            ]
+            n_window = sg.Window('Podaj dane', layout)
+            event, values = n_window.read()
+            n_window.close()
+            if values[0]:
+                value = int(values[0])
+            else:
+                value = int(values[1])
+            is_bin = values[2]
+            pointop.prog1(filename, value, is_bin)
 
     window.close()
 
