@@ -14,7 +14,11 @@ def neg(source):
         for j in range(width ):
             n_img[i, j] = abs(255 - img[i, j])
 
+    fig = plt.figure(figsize=(10, 7))
+    fig.add_subplot(2, 1, 1)
     plt.imshow(n_img, cmap='gray')
+    fig.add_subplot(2, 1, 2)
+    plt.hist(n_img.ravel(), 256, [0, 256])
     plt.show()
 
 
@@ -50,7 +54,11 @@ def prog1(source, val, is_bin):
                 else:
                     n_img[i, j] = img[i, j]
 
+    fig = plt.figure(figsize=(10, 7))
+    fig.add_subplot(2, 1, 1)
     plt.imshow(n_img, cmap='gray')
+    fig.add_subplot(2, 1, 2)
+    plt.hist(n_img.ravel(), 256, [0, 256])
     plt.show()
 
 
@@ -68,8 +76,13 @@ def prog_nonbin(source, min_val, max_val):
             else:
                 n_img[i, j] = img[i, j]
 
+    fig = plt.figure(figsize=(10, 7))
+    fig.add_subplot(2, 1, 1)
     plt.imshow(n_img, cmap='gray')
+    fig.add_subplot(2, 1, 2)
+    plt.hist(n_img.ravel(), 256, [0, 256])
     plt.show()
+
 
 
 def prog_bin(source, min_val, max_val):
@@ -86,5 +99,9 @@ def prog_bin(source, min_val, max_val):
             else:
                 n_img[i, j] = img[i, j]
 
+    fig = plt.figure(figsize=(10, 7))
+    fig.add_subplot(2, 1, 1)
     plt.imshow(n_img, cmap='gray')
+    fig.add_subplot(2, 1, 2)
+    plt.hist(n_img.ravel(), 256, [0, 256])
     plt.show()

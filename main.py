@@ -6,7 +6,6 @@ from PIL import Image
 import shutil
 import os
 import cv2
-import matplotlib.pyplot as plt
 
 number = 0
 

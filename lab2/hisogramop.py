@@ -5,7 +5,7 @@ import numpy as np
 import os
 
 
-def roz_hist_max(source, a, b):
+def roz_hist_max(source):
     img = plt.imread(source)
     height = img.shape[0]
     width = img.shape[1]
@@ -27,7 +27,10 @@ def roz_hist_max(source, a, b):
                 after_img_ar[i][j] = 255
 
     im = Image.fromarray(after_img_ar)
-    im.show()
+    fig = plt.figure(figsize=(10, 7))
+    fig.add_subplot(2, 1, 1)
+    plt.imshow(im, cmap='gray')
+    fig.add_subplot(2, 1, 2)
     plt.hist(after_img_ar.ravel(), 256, [0, 256])
     plt.show()
 
@@ -52,7 +55,11 @@ def roz_hist(source, a, b):
                 after_img_ar[i][j] = b
 
     im = Image.fromarray(after_img_ar)
-    im.show()
+
+    fig = plt.figure(figsize=(10, 7))
+    fig.add_subplot(2, 1, 1)
+    plt.imshow(im, cmap='gray')
+    fig.add_subplot(2, 1, 2)
     plt.hist(after_img_ar.ravel(), 256, [0, 256])
     plt.show()
 
@@ -78,6 +85,8 @@ def equalize(source):
     img_arr = np.reshape(img_arr, img.shape)
     img_fin = Image.fromarray(img_arr)
     img_fin.show()
+    plt.hist(img_arr.ravel(), 256, [0, 256])
+    plt.show()
 
 
 def nonlinear(source, gamma):
@@ -88,11 +97,13 @@ def nonlinear(source, gamma):
     N = cdf.max() - cdf.min()
     cdf_normalized = nj / N
     cdf_normalized = cdf_normalized.astype('uint8')
-    plt.plot(cdf_normalized)
-    plt.show()
+    # plt.plot(cdf_normalized)
+    # plt.show()
 
     temp_img = img.flatten()
     img_arr = cdf_normalized[temp_img]
     img_arr = np.reshape(img_arr, img.shape)
     img_fin = Image.fromarray(img_arr)
     img_fin.show()
+    plt.hist(img_arr.ravel(), 256, [0, 256])
+    plt.show()
