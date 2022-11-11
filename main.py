@@ -1,6 +1,7 @@
 from lab1 import basichistogram
 from lab2 import hisogramop
 from lab2 import pointop
+from lab3 import adding, logic_op
 import PySimpleGUI as sg
 from PIL import Image
 import shutil
@@ -51,7 +52,7 @@ def test_menus():
     menu_def = [['&File', ['&Open', 'Save', 'Duplicate']],
                 ['&Lab1', ['&Histogram', ['&Monochromatic', '&Color']], ],
                 ['&Lab2', ['Stretch histogram', ['Linear', 'Nonlinear'], 'equalize_cv', 'Equalize', 'Negative', 'Thresholding 1 param', 'Thresholding 2 params']],
-                ['&Lab3', []],
+                ['&Lab3', ['Add', 'Multiply', 'Divide', 'Subtract', 'Logic operations', ['NOT', 'AND', 'OR', 'XOR']]],
                 ['&Lab4', []],
                 ['&Lab5', []],
                 ['&Lab6', []],
@@ -172,10 +173,49 @@ def test_menus():
                 value = int(values[1])
             is_bin = values[2]
             pointop.prog1(filename, value, is_bin)
-
+        elif event == 'Add':
+            filename2 = sg.popup_get_file('file to open', no_window=True)
+            adding.add_normal(filename, filename2)
+        elif event == 'Multiply':
+            layout = [
+                [sg.Text('Liczba:'), sg.InputText()],
+                [sg.Submit()]
+            ]
+            n_window = sg.Window('Podaj dane', layout)
+            event, values = n_window.read()
+            n_window.close()
+            adding.multiply(filename, float(values[0]))
+        elif event == 'Divide':
+            layout = [
+                [sg.Text('Liczba:'), sg.InputText()],
+                [sg.Submit()]
+            ]
+            n_window = sg.Window('Podaj dane', layout)
+            event, values = n_window.read()
+            n_window.close()
+            adding.divide(filename, float(values[0]))
+        elif event == 'Subtract':
+            filename2 = sg.popup_get_file('file to open', no_window=True)
+            adding.bezwgl(filename, filename2)
+        elif event == 'NOT':
+            pointop.neg(filename)
+        elif event == 'AND':
+            filename2 = sg.popup_get_file('file to open', no_window=True)
+            logic_op.op_and(filename, filename2)
+        elif event == 'OR':
+            filename2 = sg.popup_get_file('file to open', no_window=True)
+            logic_op.op_or(filename, filename2)
+        elif event == 'XOR':
+            filename2 = sg.popup_get_file('file to open', no_window=True)
+            logic_op.op_xor(filename, filename2)
     window.close()
 
 
 if __name__ == '__main__':
-    os.mkdir('copied')
+    if os.path.exists('copied'):
+        shutil.rmtree('copied')
+        os.mkdir('copied')
+    else:
+        os.mkdir('copied')
+
     test_menus()
