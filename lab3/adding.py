@@ -14,8 +14,22 @@ def add_normal_cv(img1, img2):
 def add_normal(img1, img2):
     image1 = Image.open(img1)
     image2 = Image.open(img2)
-    im3 = ImageChops.add(image1, image2, scale=2.0)
+    im3 = ImageChops.add(image1, image2, scale=1.0)
     im3.show()
+
+
+def add_normal_num(img, num):
+    img = cv2.imread(img, 0)
+    height = img.shape[0]
+    width = img.shape[1]
+    n_img = np.zeros([height, width])
+    for i in range(height):
+        for j in range(width):
+            n_img[i][j] = img[i][j] + num
+
+    fin_img = np.clip(n_img, 0, 255)
+    plt.imshow(fin_img, cmap='gray')
+    plt.show()
 
 
 def multiply(img, num):
