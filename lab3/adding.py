@@ -18,6 +18,13 @@ def add_normal(img1, img2):
     im3.show()
 
 
+def add_normal_wys(img1, img2):
+    image1 = Image.open(img1)
+    image2 = Image.open(img2)
+    im3 = ImageChops.add(image1, image2, scale=1.0)
+    im3.show()
+
+
 def add_normal_num(img, num):
     img = cv2.imread(img, 0)
     height = img.shape[0]
@@ -42,7 +49,12 @@ def multiply(img, num):
             n_img[i][j] = img[i][j]*num
 
     fin_img = np.clip(n_img, 0, 255)
+
+    fig = plt.figure(figsize=(10, 7))
+    fig.add_subplot(2, 1, 1)
     plt.imshow(fin_img, cmap='gray')
+    fig.add_subplot(2, 1, 2)
+    plt.hist(fin_img.ravel(), 256, [0, 256])
     plt.show()
 
 

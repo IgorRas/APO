@@ -52,7 +52,7 @@ def test_menus():
     menu_def = [['&File', ['&Open', 'Save', 'Duplicate']],
                 ['&Lab1', ['&Histogram', ['&Monochromatic', '&Color']], ],
                 ['&Lab2', ['Stretch histogram', ['Linear', 'Nonlinear'], 'equalize_cv', 'Equalize', 'Negative', 'Thresholding 1 param', 'Thresholding 2 params']],
-                ['&Lab3', ['Add', 'Multiply', 'Divide', 'Subtract', 'Logic operations', ['NOT', 'AND', 'OR', 'XOR']]],
+                ['&Lab3', ['Add', 'Add Number', 'Multiply', 'Divide', 'Subtract', 'Logic operations', ['NOT', 'AND', 'OR', 'XOR']]],
                 ['&Lab4', []],
                 ['&Lab5', []],
                 ['&Lab6', []],
@@ -208,6 +208,15 @@ def test_menus():
         elif event == 'XOR':
             filename2 = sg.popup_get_file('file to open', no_window=True)
             logic_op.op_xor(filename, filename2)
+        elif event == 'Add Number':
+            layout = [
+                [sg.Text('Liczba:'), sg.InputText()],
+                [sg.Submit()]
+            ]
+            n_window = sg.Window('Podaj dane', layout)
+            event, values = n_window.read()
+            n_window.close()
+            adding.add_normal_num(filename, float(values[0]))
     window.close()
 
 
