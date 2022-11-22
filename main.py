@@ -1,7 +1,7 @@
 from lab1 import basichistogram
-from lab2 import hisogramop
-from lab2 import pointop
+from lab2 import hisogramop, pointop
 from lab3 import adding, logic_op
+from lab4 import zadanie1
 import PySimpleGUI as sg
 from PIL import Image
 import shutil
@@ -53,7 +53,7 @@ def test_menus():
                 ['&Lab1', ['&Histogram', ['&Monochromatic', '&Color']], ],
                 ['&Lab2', ['Stretch histogram', ['Linear', 'Nonlinear'], 'equalize_cv', 'Equalize', 'Negative', 'Thresholding 1 param', 'Thresholding 2 params']],
                 ['&Lab3', ['Add', 'Add Number', 'Multiply', 'Divide', 'Subtract', 'Logic operations', ['NOT', 'AND', 'OR', 'XOR']]],
-                ['&Lab4', []],
+                ['&Lab4', ['Smoothing', 'Sharpen', 'Detecting edges']],
                 ['&Lab5', []],
                 ['&Lab6', []],
                 ['&Lab7', []],
@@ -217,6 +217,74 @@ def test_menus():
             event, values = n_window.read()
             n_window.close()
             adding.add_normal_num(filename, float(values[0]))
+        elif event == 'Smoothing':
+            layout = [
+                [sg.Text('Maska:')],
+                [sg.Image('masks/usred.png'), sg.Image('masks/usred_wag.png'), sg.Image('masks/gauss.png')],
+                [sg.Radio('Usrednianie', "RADIO1", default=True),
+                 sg.Radio('Usrednianie z waga', "RADIO1", default=False),
+                 sg.Radio('Gaussowskie', "RADIO1", default=False)],
+                [sg.Text('k:'), sg.InputText(size=(6, 2))],
+                [sg.Radio('BORDER_CONSTANT', "RADIO2", default=False),
+                sg.Radio('BORDER_REFLECT', "RADIO2", default=True),
+                sg.Radio('BORDER_WRAP', "RADIO2", default=False)],
+                [sg.Text('Stala:'), sg.InputText(size=(6, 2))],
+                [sg.Submit()]
+            ]
+            n_window = sg.Window('Podaj dane', layout)
+            event, values = n_window.read()
+            n_window.close()
+            print(values)
+            zadanie1.smoothing(filename, values)
+        elif event == 'Sharpen':
+            layout = [
+                [sg.Text('Maska:')],
+                [sg.Image('masks/lap1.png'), sg.Image('masks/lap2.png'), sg.Image('masks/lap3.png')],
+                [sg.Radio('Laplasjan1', "RADIO3", default=True),
+                 sg.Radio('Laplasjan2', "RADIO3", default=False),
+                 sg.Radio('Laplasjan3', "RADIO3", default=False)],
+                [sg.Radio('BORDER_CONSTANT', "RADIO2", default=False),
+                 sg.Radio('BORDER_REFLECT', "RADIO2", default=True),
+                 sg.Radio('BORDER_WRAP', "RADIO2", default=False)],
+                [sg.Text('Stala:'), sg.InputText(size=(6, 2))],
+                [sg.Submit()]
+            ]
+            n_window = sg.Window('Podaj dane', layout)
+            event, values = n_window.read()
+            n_window.close()
+            print(values)
+            zadanie1.sharpen(filename, values)
+        elif event == 'Detecting edges':
+            layout = [
+                [sg.Text('Kierunek:')],
+                [sg.Image('masks/W.png'),
+                 sg.Image('masks/NW.png'),
+                 sg.Image('masks/N.png'),
+                 sg.Image('masks/NE.png'),
+                 sg.Image('masks/E.png'),
+                 sg.Image('masks/SE.png'),
+                 sg.Image('masks/S.png'),
+                 sg.Image('masks/SW.png')],
+                [sg.Radio('W', "RADIO3", default=True, expand_x=True),
+                 sg.Radio('NW', "RADIO3", default=False, expand_x=True),
+                 sg.Radio('N', "RADIO3", default=False, expand_x=True),
+                 sg.Radio('NE', "RADIO3", default=False, expand_x=True),
+                 sg.Radio('E', "RADIO3", default=False, expand_x=True),
+                 sg.Radio('SE', "RADIO3", default=False, expand_x=True),
+                 sg.Radio('S', "RADIO3", default=False, expand_x=True),
+                 sg.Radio('SW', "RADIO3", default=False, expand_x=True)],
+                [sg.Radio('BORDER_CONSTANT', "RADIO2", default=False),
+                 sg.Radio('BORDER_REFLECT', "RADIO2", default=True),
+                 sg.Radio('BORDER_WRAP', "RADIO2", default=False)],
+                [sg.Text('Stala:'), sg.InputText(size=(6, 2))],
+                [sg.Submit()]
+            ]
+            n_window = sg.Window('Podaj dane', layout)
+            event, values = n_window.read()
+            n_window.close()
+            print(values)
+            zadanie1.edges(filename, values)
+
     window.close()
 
 
