@@ -1,7 +1,7 @@
 from lab1 import basichistogram
 from lab2 import hisogramop, pointop
 from lab3 import adding, logic_op
-from lab4 import zadanie1
+from lab4 import zadanie1, zadanie2
 import PySimpleGUI as sg
 from PIL import Image
 import shutil
@@ -53,7 +53,7 @@ def test_menus():
                 ['&Lab1', ['&Histogram', ['&Monochromatic', '&Color']], ],
                 ['&Lab2', ['Stretch histogram', ['Linear', 'Nonlinear'], 'equalize_cv', 'Equalize', 'Negative', 'Thresholding 1 param', 'Thresholding 2 params']],
                 ['&Lab3', ['Add', 'Add Number', 'Multiply', 'Divide', 'Subtract', 'Logic operations', ['NOT', 'AND', 'OR', 'XOR']]],
-                ['&Lab4', ['Smoothing', 'Sharpen', 'Detecting edges']],
+                ['&Lab4', ['Smoothing', 'Sharpen', 'Detecting edges', 'Median']],
                 ['&Lab5', []],
                 ['&Lab6', []],
                 ['&Lab7', []],
@@ -265,14 +265,14 @@ def test_menus():
                  sg.Image('masks/SE.png'),
                  sg.Image('masks/S.png'),
                  sg.Image('masks/SW.png')],
-                [sg.Radio('W', "RADIO3", default=True, expand_x=True),
-                 sg.Radio('NW', "RADIO3", default=False, expand_x=True),
-                 sg.Radio('N', "RADIO3", default=False, expand_x=True),
-                 sg.Radio('NE', "RADIO3", default=False, expand_x=True),
-                 sg.Radio('E', "RADIO3", default=False, expand_x=True),
+                [sg.Radio('E', "RADIO3", default=True, expand_x=True),
                  sg.Radio('SE', "RADIO3", default=False, expand_x=True),
                  sg.Radio('S', "RADIO3", default=False, expand_x=True),
-                 sg.Radio('SW', "RADIO3", default=False, expand_x=True)],
+                 sg.Radio('SW', "RADIO3", default=False, expand_x=True),
+                 sg.Radio('W', "RADIO3", default=False, expand_x=True),
+                 sg.Radio('NW', "RADIO3", default=False, expand_x=True),
+                 sg.Radio('N', "RADIO3", default=False, expand_x=True),
+                 sg.Radio('NE', "RADIO3", default=False, expand_x=True)],
                 [sg.Radio('BORDER_CONSTANT', "RADIO2", default=False),
                  sg.Radio('BORDER_REFLECT', "RADIO2", default=True),
                  sg.Radio('BORDER_WRAP', "RADIO2", default=False)],
@@ -284,6 +284,24 @@ def test_menus():
             n_window.close()
             print(values)
             zadanie1.edges(filename, values)
+        elif event == 'Median':
+            layout = [
+                [sg.Text('Maska:')],
+                [sg.Radio('3x3', "RADIO1", default=True),
+                 sg.Radio('5x5', "RADIO1", default=False),
+                 sg.Radio('7x7', "RADIO1", default=False),
+                 sg.Radio('9x9', "RADIO1", default=False)],
+                [sg.Radio('BORDER_CONSTANT', "RADIO2", default=False),
+                 sg.Radio('BORDER_REFLECT', "RADIO2", default=True),
+                 sg.Radio('BORDER_WRAP', "RADIO2", default=False)],
+                [sg.Text('Stala:'), sg.InputText(size=(6, 2))],
+                [sg.Submit()]
+            ]
+            n_window = sg.Window('Podaj dane', layout)
+            event, values = n_window.read()
+            n_window.close()
+            print(values)
+            zadanie2.median(filename, values)
 
     window.close()
 
