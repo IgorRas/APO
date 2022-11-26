@@ -1,8 +1,9 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from matplotlib.widgets import RangeSlider
+from matplotlib.widgets import TextBox
 import cv2
 import PySimpleGUI as sg
+from PIL import Image
 
 
 def edges(source, options):
@@ -32,8 +33,14 @@ def edges(source, options):
         abs_grad_x = cv2.filter2D(img, -1, kernelx)
         abs_grad_y = cv2.filter2D(img, -1, kernely)
 
-        grad = cv2.addWeighted(abs_grad_x, 1, abs_grad_y, 1, 0)
-        cv2.imshow('Gradient', grad)
+        height = img.shape[0]
+        width = img.shape[1]
+        n_img = np.zeros([height, width])
+        for i in range(height):
+            for j in range(width):
+                n_img[i, j] = (abs_grad_x[i, j] + abs_grad_y[i, j])
+        abs_n_img = cv2.convertScaleAbs(n_img)
+        cv2.imshow('Gradient', abs_n_img)
 
     if canny:
         layout = [
@@ -49,3 +56,44 @@ def edges(source, options):
         grad = cv2.Canny(img, mini, maxi)
         cv2.imshow('Gradient', grad)
 
+
+def thresholding_interactive(source, options):
+    img = cv2.imread(source, 0)
+    otsu = options[0]
+    adaptive = options[1]
+
+    if otsu:
+        tht, img1 = cv2.threshold(img, 127, 255, cv2.THRESH_OTSU)
+
+        fig = plt.figure(figsize=(10, 7))
+        fig.add_subplot(2, 1, 1)
+        plt.imshow(img, cmap='gray')
+        fig.add_subplot(2, 2, 1)
+        plt.imshow(img1, cmap='gray')
+        fig.add_subplot(2, 1, 2)
+        plt.hist(img1.ravel(), 256, [0, 256])
+        plt.show()
+    if adaptive:
+        layout = [
+            [sg.Radio('Mean', "RADIO1", default=True),
+             sg.Radio('Gaussian', "RADIO1", default=False)],
+            [sg.Submit()]
+        ]
+        n_window = sg.Window('Podaj dane', layout)
+        event, values = n_window.read()
+        mean = values[0]
+        gaussian = values[1]
+        n_window.close()
+        if mean:
+            img1 = cv2.adaptiveThreshold(img, 255, cv2.ADAPTIVE_THRESH_MEAN_C , cv2.THRESH_BINARY, 5, 0)
+        else:
+            img1 = cv2.adaptiveThreshold(img, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 5, 0)
+
+        fig = plt.figure(figsize=(10, 7))
+        fig.add_subplot(2, 1, 1)
+        plt.imshow(img, cmap='gray')
+        fig.add_subplot(2, 2, 1)
+        plt.imshow(img1, cmap='gray')
+        fig.add_subplot(2, 1, 2)
+        plt.hist(img1.ravel(), 256, [0, 256])
+        plt.show()

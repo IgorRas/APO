@@ -55,7 +55,7 @@ def test_menus():
                 ['&Lab2', ['Stretch histogram', ['Linear', 'Nonlinear'], 'equalize_cv', 'Equalize', 'Negative', 'Thresholding 1 param', 'Thresholding 2 params']],
                 ['&Lab3', ['Add', 'Add Number', 'Multiply', 'Divide', 'Subtract', 'Logic operations', ['NOT', 'AND', 'OR', 'XOR']]],
                 ['&Lab4', ['Smoothing', 'Sharpen', 'Detecting edges', 'Median']],
-                ['&Lab5', ['Edges with operators']],
+                ['&Lab5', ['Edges with operators', 'Thresholding interactive']],
                 ['&Lab6', []],
                 ['&Lab7', []],
                 ['&Lab8', []], ]
@@ -305,7 +305,7 @@ def test_menus():
             zadanie2.median(filename, values)
         elif event == 'Edges with operators':
             layout = [
-                [sg.Text('Maska:')],
+                [sg.Text('Operator:')],
                 [sg.Radio('Sobel', "RADIO1", default=True),
                  sg.Radio('Prewitt', "RADIO1", default=False),
                  sg.Radio('Canny', "RADIO1", default=False)],
@@ -316,6 +316,19 @@ def test_menus():
             n_window.close()
             print(values)
             edges.edges(filename, values)
+        elif event =='Thresholding interactive':
+            layout = [
+                [sg.Text('Progowanie:')],
+                [sg.Radio('Otsu', "RADIO1", default=True),
+                 sg.Radio('Adaptacyjne', "RADIO1", default=False)],
+                [sg.Submit()]
+            ]
+            n_window = sg.Window('Podaj dane', layout)
+            event, values = n_window.read()
+            n_window.close()
+            print(values)
+            edges.thresholding_interactive(filename, values)
+
 
     window.close()
 
