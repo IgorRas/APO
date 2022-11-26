@@ -2,6 +2,7 @@ from lab1 import basichistogram
 from lab2 import hisogramop, pointop
 from lab3 import adding, logic_op
 from lab4 import zadanie1, zadanie2
+from lab5 import edges
 import PySimpleGUI as sg
 from PIL import Image
 import shutil
@@ -54,7 +55,7 @@ def test_menus():
                 ['&Lab2', ['Stretch histogram', ['Linear', 'Nonlinear'], 'equalize_cv', 'Equalize', 'Negative', 'Thresholding 1 param', 'Thresholding 2 params']],
                 ['&Lab3', ['Add', 'Add Number', 'Multiply', 'Divide', 'Subtract', 'Logic operations', ['NOT', 'AND', 'OR', 'XOR']]],
                 ['&Lab4', ['Smoothing', 'Sharpen', 'Detecting edges', 'Median']],
-                ['&Lab5', []],
+                ['&Lab5', ['Edges with operators']],
                 ['&Lab6', []],
                 ['&Lab7', []],
                 ['&Lab8', []], ]
@@ -302,6 +303,19 @@ def test_menus():
             n_window.close()
             print(values)
             zadanie2.median(filename, values)
+        elif event == 'Edges with operators':
+            layout = [
+                [sg.Text('Maska:')],
+                [sg.Radio('Sobel', "RADIO1", default=True),
+                 sg.Radio('Prewitt', "RADIO1", default=False),
+                 sg.Radio('Canny', "RADIO1", default=False)],
+                [sg.Submit()]
+            ]
+            n_window = sg.Window('Podaj dane', layout)
+            event, values = n_window.read()
+            n_window.close()
+            print(values)
+            edges.edges(filename, values)
 
     window.close()
 

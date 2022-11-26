@@ -24,7 +24,7 @@ def median(source, options):
 
     if border_constant:
         constant = int(options[7])
-        image = cv2.copyMakeBorder(img, border, border, border, border, cv2.BORDER_CONSTANT, value=constant)
+        image = cv2.copyMakeBorder(img, border, border, border, border, cv2.BORDER_CONSTANT, value=(constant, constant, constant))
         fin = cv2.medianBlur(image, size)
     if border_reflect:
         image = cv2.copyMakeBorder(img, border, border, border, border, cv2.BORDER_REFLECT)
@@ -36,8 +36,8 @@ def median(source, options):
     fin = cv2.cvtColor(fin, cv2.COLOR_BGR2RGB)
     img = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
 
-    plt.subplot(121), plt.imshow(img), plt.title('Original')
+    plt.subplot(121), plt.imshow(img, cmap='gray'), plt.title('Original')
     plt.xticks([]), plt.yticks([])
-    plt.subplot(122), plt.imshow(fin), plt.title('After')
+    plt.subplot(122), plt.imshow(fin, cmap='gray'), plt.title('After')
     plt.xticks([]), plt.yticks([])
     plt.show()

@@ -35,7 +35,7 @@ def smoothing( source, options):
 
     if border_constant:
         constant = int(options[10])
-        image = cv2.copyMakeBorder(img, 1, 1, 1, 1, cv2.BORDER_CONSTANT, value=constant)
+        image = cv2.copyMakeBorder(img, 1, 1, 1, 1, cv2.BORDER_CONSTANT, value=(constant, constant, constant))
         fin = cv2.filter2D(image, -1, mask)
     if border_reflect:
         fin = cv2.filter2D(img, -1, mask, borderType=cv2.BORDER_REFLECT)
@@ -83,7 +83,7 @@ def sharpen(source, options):
 
     if border_constant:
         constant = int(options[9])
-        image = cv2.copyMakeBorder(img, 1, 1, 1, 1, cv2.BORDER_CONSTANT, value=constant)
+        image = cv2.copyMakeBorder(img, 1, 1, 1, 1, cv2.BORDER_CONSTANT, value=(constant, constant, constant))
         fin = cv2.filter2D(image, -1, mask)
     if border_reflect:
         fin = cv2.filter2D(img, -1, mask, borderType=cv2.BORDER_REFLECT)
@@ -145,7 +145,7 @@ def edges(source, options):
 
     if border_constant:
         constant = int(options[19])
-        image = cv2.copyMakeBorder(img, 1, 1, 1, 1, cv2.BORDER_CONSTANT, value=constant)
+        image = cv2.copyMakeBorder(img, 1, 1, 1, 1, cv2.BORDER_CONSTANT, value=(constant, constant, constant))
         fin = cv2.filter2D(image, -1, mask)
     if border_reflect:
         fin = cv2.filter2D(img, -1, mask, borderType=cv2.BORDER_REFLECT)

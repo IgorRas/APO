@@ -84,7 +84,6 @@ def prog_nonbin(source, min_val, max_val):
     plt.show()
 
 
-
 def prog_bin(source, min_val, max_val):
     img = cv2.imread(source, 0)
     height = img.shape[0]
