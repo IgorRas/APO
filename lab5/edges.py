@@ -2,6 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.widgets import RangeSlider
 import cv2
+import PySimpleGUI as sg
 
 
 def edges(source, options):
@@ -22,15 +23,29 @@ def edges(source, options):
         cv2.imshow('Gradient', grad)
 
     if prewitt:
-        kernelx = np.array([[1, 1, 1], [0, 0, 0], [-1, -1, -1]])
-        kernely = np.array([[-1, 0, 1], [-1, 0, 1], [-1, 0, 1]])
+        kernelx = np.array([[-1, -1, -1],
+                            [0, 0, 0],
+                            [1, 1, 1]])
+        kernely = np.array([[1, 1, 1],
+                            [0, 0, 0],
+                            [-1, -1, -1]])
         abs_grad_x = cv2.filter2D(img, -1, kernelx)
         abs_grad_y = cv2.filter2D(img, -1, kernely)
 
-        grad = cv2.addWeighted(abs_grad_x, 0.5, abs_grad_y, 0.5, 0)
+        grad = cv2.addWeighted(abs_grad_x, 1, abs_grad_y, 1, 0)
         cv2.imshow('Gradient', grad)
 
     if canny:
-        grad = cv2.Canny(img, 100, 200)
+        layout = [
+            [sg.Text('Próg min:'), sg.InputText(size=(4, 10))],
+            [sg.Text('Próg max:'), sg.InputText(size=(4, 10))],
+            [sg.Submit()]
+        ]
+        n_window = sg.Window('Podaj dane', layout)
+        event, values = n_window.read()
+        mini = int(values[0])
+        maxi = int(values[1])
+        n_window.close()
+        grad = cv2.Canny(img, mini, maxi)
         cv2.imshow('Gradient', grad)
 
