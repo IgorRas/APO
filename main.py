@@ -3,6 +3,7 @@ from lab2 import hisogramop, pointop
 from lab3 import adding, logic_op
 from lab4 import zadanie1, zadanie2
 from lab5 import edges
+from lab6 import morf, feature
 import PySimpleGUI as sg
 from PIL import Image
 import shutil
@@ -56,7 +57,7 @@ def test_menus():
                 ['&Lab3', ['Add', 'Add Number', 'Multiply', 'Divide', 'Subtract', 'Logic operations', ['NOT', 'AND', 'OR', 'XOR']]],
                 ['&Lab4', ['Smoothing', 'Sharpen', 'Detecting edges', 'Median']],
                 ['&Lab5', ['Edges with operators', 'Thresholding interactive']],
-                ['&Lab6', []],
+                ['&Lab6', ['Erosion', 'Dilation', 'Open_morf', 'Close_morf', 'Moment']],
                 ['&Lab7', []],
                 ['&Lab8', []], ]
 
@@ -328,7 +329,16 @@ def test_menus():
             n_window.close()
             print(values)
             edges.thresholding_interactive(filename, values)
-
+        elif event == 'Erosion':
+            morf.erosion(filename)
+        elif event == 'Dilation':
+            morf.dilate(filename)
+        elif event == 'Open_morf':
+            morf.open(filename)
+        elif event == 'Close_morf':
+            morf.close(filename)
+        elif event == 'Moment':
+            feature.moment(filename)
 
     window.close()
 
