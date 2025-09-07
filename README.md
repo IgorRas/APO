@@ -7,7 +7,8 @@
 Prowadzący \- **Anna Korzyńska**  
 Autor \-  **Igor Rasiński**
 
-Napisana przeze mnie aplikacja składa się z głównego menu, poniżej, wszystkie wbudowane funkcje są umieszczone w zakładach Lab. Natomiast operacje otwierania, zamykania, zapisywania plików są w zakładce File.![][image1]
+Napisana przeze mnie aplikacja składa się z głównego menu, poniżej, wszystkie wbudowane funkcje są umieszczone w zakładach Lab. Natomiast operacje otwierania, zamykania, zapisywania plików są w zakładce File.
+![obraz](https://github.com/IgorRas/APO/blob/master/images/image27.png)
 
 Spis treści
 
@@ -58,7 +59,15 @@ Spis treści
 
 # 1.Wprowadzenie
 
-## 1.1 Wymagania Wymagane oprogramowanie: 	\- system operacyjny Windows 7 lub wyższy 	\- Python 3.7 lub wyższy Następujące biblioteki dla języka Python: 	\- Pillow 9.2.0 	\- PySimpleGui 4.60.4 	\- OpenCV-Python 4.6.0.66 	\- Matplotlib 3.5.3 	\- Numpy 1.21.6
+## 1.1 Wymagania Wymagane oprogramowanie:
+\- system operacyjny Windows 7 lub wyższy
+\- Python 3.7 lub wyższy 
+#### Następujące biblioteki dla języka Python:
+\- Pillow 9.2.0
+\- PySimpleGui 4.60.4
+\- OpenCV-Python 4.6.0.66
+\- Matplotlib 3.5.3
+\- Numpy 1.21.6
 
 ## 1.2 Uruchamianie programu
 
@@ -71,10 +80,10 @@ znajduje się projekt, należy wpisać “python main.py”.
 
 2.1.1 Monochromatic  
 Wylicza i wyświetla okno histogramu dla obrazu szaroodcieniowego wraz z samym obrazem.  
-![][image2]  
+![obraz](https://github.com/IgorRas/APO/blob/master/images/image40.png) 
 2.1.2 Color  
 Wylicza i wyświetla okno histogramu dla obrazu kolorowego wraz z samym obrazem. Wyświetlają się trzy histogramy, oddzielne dla każdego koloru.  
-![][image3]
+![obraz](https://github.com/IgorRas/APO/blob/master/images/image41.png)
 
 # 3.Lab2
 
@@ -82,28 +91,29 @@ Wylicza i wyświetla okno histogramu dla obrazu kolorowego wraz z samym obrazem.
 
 3.1.1 Linear  
 Po kliknięciu w opcję pokazuje się okno wyboru progu maksymalnego i minimalnego. Po wybraniu pokazuje się obraz i jego zmodyfikowany histogram.  
-![][image4]
+![obraz](https://github.com/IgorRas/APO/blob/master/images/image42.png)
 
-![][image5]  
+![obraz](https://github.com/IgorRas/APO/blob/master/images/image18.png)  
 3.1.1 Nonlinear  
 Po kliknięciu w opcję pokazuje się okno wyboru gammy. Potem pokazuj sie zmodyfikowany histogram.  
-![][image6]  
+![obraz](https://github.com/IgorRas/APO/blob/master/images/image46.png) 
 3.2 Equalize   
 Wyświetla obraz oraz histogram zmodyfikowanego obrazu. Zmiana polega na rozciągnięciu histogramu obrazu do maksymalnych wartości.  
-![][image7]  
+![obraz](https://github.com/IgorRas/APO/blob/master/images/image33.png) 
 3.3 Negative  
-Wyświetla obraz oraz histogram zmodyfikowanego obrazu. Zmiana polega odwróceniu stworzeniu negatywu podanego obrazu.![][image8]  
+Wyświetla obraz oraz histogram zmodyfikowanego obrazu. Zmiana polega odwróceniu stworzeniu negatywu podanego obrazu.
+![obraz](https://github.com/IgorRas/APO/blob/master/images/image43.png)
 3.4 Thresholding 1 param  
 Po uruchomieniu pojawia się okno wyboru progu.  
-![][image9]  
+![obraz](https://github.com/IgorRas/APO/blob/master/images/image26.png) 
 Potem wyświetla odpowiednio zmodyfikowany obraz i histogram.  
-![][image10]  
+![obraz](https://github.com/IgorRas/APO/blob/master/images/image34.png)
 3.5 Thresholding 2 param  
 Po uruchomieniu pojawia się okno wyboru dwóch progów.
 
-![][image11]  
+![obraz](https://github.com/IgorRas/APO/blob/master/images/image44.png)
 Potem wyświetla odpowiednio zmodyfikowany obraz i histogram.  
-![][image12]
+![obraz](https://github.com/IgorRas/APO/blob/master/images/image17.png)
 
 # 4.Lab3
 
@@ -111,83 +121,89 @@ Potem wyświetla odpowiednio zmodyfikowany obraz i histogram.
 Po uruchomieniu pojawia się okno wyboru obrazu. Ten obraz zostanie dodany do pierwotnego obrazu. Następnie wyświetlony zostanie ten obraz.  
 4.2 Add number  
 Po uruchomieniu pojawia się okno wyboru liczby. Liczba ta zostanie dodana do całego histogramu pierwotnego obrazu. Następnie wyświetlony zostanie ten obraz.  
-![][image13]
-
 4.3 Multiply  
 Po uruchomieniu pojawia się okno wyboru liczby. Histogram pierwotnego obrazu zostanie pomnożony przez nią. Następnie wyświetlony zostanie ten obraz i jego histogram.  
-![][image14]  
+![obraz](https://github.com/IgorRas/APO/blob/master/images/image15.png)
 4.4 Divide  
 Po uruchomieniu pojawia się okno wyboru liczby. Histogram pierwotnego obrazu zostanie podzielony przez nią. Następnie wyświetlony zostanie ten obraz.  
-![][image15]  
+![obraz](https://github.com/IgorRas/APO/blob/master/images/image47.png)  
 4.5 Subtract  
 Po uruchomieniu pojawia się okno wyboru obrazu. Następnie od pierwotnego obrazu zostanie odjęty wybrany i wyświetlony wynik.  
-![][image16]![][image17]![][image18]  
+![obraz](https://github.com/IgorRas/APO/blob/master/images/image8.png)![obraz](https://github.com/IgorRas/APO/blob/master/images/image5.png)![obraz](https://github.com/IgorRas/APO/blob/master/images/image13.png)
 4.6 Logic operators  
 Każda z opcji wykonuje logiczne operacje bitowe na zadanych obrazach.  
 4.6.1 NOT  
-![][image19]  
+![obraz](https://github.com/IgorRas/APO/blob/master/images/image12.png)
 4.6.2 AND  
-![][image20]![][image21]![][image22]  
+![obraz](https://github.com/IgorRas/APO/blob/master/images/image5.png)
+![obraz](https://github.com/IgorRas/APO/blob/master/images/image7.png)
+![obraz](https://github.com/IgorRas/APO/blob/master/images/image28.png)
 4.6.3 OR  
-![][image20]![][image23]![][image24]  
+![obraz](https://github.com/IgorRas/APO/blob/master/images/image5.png)
+![obraz](https://github.com/IgorRas/APO/blob/master/images/image7.png)
+![obraz](https://github.com/IgorRas/APO/blob/master/images/image19.png)
 4.6.4 XOR  
-![][image20]![][image23]![][image25]
+![obraz](https://github.com/IgorRas/APO/blob/master/images/image5.png)
+![obraz](https://github.com/IgorRas/APO/blob/master/images/image7.png)
+![obraz](https://github.com/IgorRas/APO/blob/master/images/image6.png)
 
 # 5.Lab4
 
 5.1 Smoothing  
 Po uruchomieniu wyświetla się okno wyboru opcji. Następnie wykonuje wybraną operację i wyświetla obraz oryginalny i po zmianie.  
-![][image26]  
-![][image27]  
+![obraz](https://github.com/IgorRas/APO/blob/master/images/image14.png) 
+![obraz](https://github.com/IgorRas/APO/blob/master/images/image9.png)  
 5.2 Sharpen  
 Po uruchomieniu wyświetla się okno wyboru opcji. Następnie wykonuje wybraną operację i wyświetla obraz oryginalny i po zmianie.
 
-![][image28]  
-![][image29]  
+![obraz](https://github.com/IgorRas/APO/blob/master/images/image45.png)  
+![obraz](https://github.com/IgorRas/APO/blob/master/images/image10.png) 
 5.3 Detecting edges   
 Po uruchomieniu wyświetla się okno wyboru opcji. Następnie wyświetla obraz oryginalny oraz zadane krawędzie.  
-![][image30]  
-![][image31]  
+![obraz](https://github.com/IgorRas/APO/blob/master/images/image29.png) 
+![obraz](https://github.com/IgorRas/APO/blob/master/images/image30.png)
 5.4 Median   
 Po uruchomieniu wyświetla się okno wyboru opcji. Następnie wykonuje wybraną operację i wyświetla obraz oryginalny i po zmianie.
 
-![][image32]  
-![][image33]
+![obraz](https://github.com/IgorRas/APO/blob/master/images/image38.png)  
+![obraz](https://github.com/IgorRas/APO/blob/master/images/image39.png)
 
 # 6.Lab5
 
 6.1 Edges with operators  
 Przeprowadza operację wykrycia krawędzi z danym operatorem. Po uruchomieniu wyświetla się okno wyboru opcji. Następnie wyświetlają się wykryte krawędzie.  
-![][image34]![][image35]  
+![obraz](https://github.com/IgorRas/APO/blob/master/images/image24.png)
+![obraz](https://github.com/IgorRas/APO/blob/master/images/image23.png)
 6.2 Thresholding interactive  
 Przeprowadza operację progowania, zgodnie z zadanymi opcjami i wyświetla porównanie oryginału z obrazem modyfikowanym.  
-![][image36]  
+![obraz](https://github.com/IgorRas/APO/blob/master/images/image37.png)
 Wynik progowania adaptacyjnego, metodą gaussowską  
-![][image37]
+![obraz](https://github.com/IgorRas/APO/blob/master/images/image36.png)
 
 # 7.Lab6
 
 7.1 Erosion  
 Przeprowadza binaryzację oryginalnego obrazu i następnie jego erozję. Wyświetla obydwa obrazy.  
-![][image38]  
+![obraz](https://github.com/IgorRas/APO/blob/master/images/image31.png) 
 7.2 Dilation  
 Przeprowadza binaryzację oryginalnego obrazu i następnie jego dyfuzję. Wyświetla obydwa obrazy.
 
-![][image39]![][image40]  
+![obraz](https://github.com/IgorRas/APO/blob/master/images/image32.png)
+![obraz](https://github.com/IgorRas/APO/blob/master/images/image11.png)
 7.3 Open\_morf  
 Przeprowadza binaryzację oryginalnego obrazu i otwarcia wykorzystując podstawowy element strukturalny dysk 3x3.  
-![][image41]  
+![obraz](https://github.com/IgorRas/APO/blob/master/images/image21.png) 
 7.4 Close\_morf  
 Przeprowadza binaryzację oryginalnego obrazu i zamknięcia wykorzystując podstawowy element strukturalny dysk 3x3.  
-![][image42]  
+![obraz](https://github.com/IgorRas/APO/blob/master/images/image20.png)
 7.5 Moment  
 Wykonuje algorytm wyznaczający następujące cechy obiektu binarnego:  
 \-momenty  
 \-pole powierzchni i obwód  
-\-współczynniki kształtu: aspectRatio (sqrt(2\*pole/pi),  
-extent (obwód/pi),   
-solidity (obwód/sqrt(2 \* pole\*pi)-1),  
-equivalentDiameter ((2\*pi\*pole)/obwód).  
+\-współczynniki kształtu: aspectRatio (![obraz](https://github.com/IgorRas/APO/blob/master/images/image1.png)),  
+extent (![obraz](https://github.com/IgorRas/APO/blob/master/images/image2.png)),   
+solidity (![obraz](https://github.com/IgorRas/APO/blob/master/images/image3.png)),  
+equivalentDiameter (![obraz](https://github.com/IgorRas/APO/blob/master/images/image4.png)).  
 A następnie zapisuje je do pliku typu excel.
 
 # 8.File
